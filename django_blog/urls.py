@@ -22,5 +22,8 @@ urlpatterns = [
     url(r'^$', views.today_is, name='todays_time'),
     url(r'^blog/$', views.index, name='blog_index'),
     url(r'^admin/', admin.site.urls),
-    
+    url(r'^(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
+    url(r'^posts/$', views.post_list, name='post_list'),
+    url(r'^contact/$', views.contact_page, name='contact_page'),
+    url(r'^about/$', views.about_page, name='about_page'),
 ]

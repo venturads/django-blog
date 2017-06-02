@@ -1,0 +1,35 @@
+{% extends "blog/base.html"  %}
+
+{% block title %}
+    Blogg - {{ block.super }}
+{% endblock %}
+
+{% block content %}    
+
+    <div class="content">
+        <div class="section-inner clearfix">        
+
+        {% for post in posts %}
+            <h3>                        
+                <a href="https://django-blog-venturads.c9users.io/{{ post.pk }}/">{{ post.title|capfirst }}</a>
+            </h3>
+            <p class="post-info">
+                Date: {{ post.pub_date }} |
+                Category: <a href="https://django-blog-venturads.c9users.io/category/{{ post.category.slug }}">{{ post.category.name }}</a> |
+
+                {% for tag in post.tags.all %}
+                      <a href="https://django-blog-venturads.c9users.io/tag/{{ tag.slug }}">{{ tag.name }}</a>
+                {% empty %}
+                      None
+                {% endfor %}
+
+                | Author: {{ post.author.name }}
+            </p>
+        {% empty %}
+            <p>There are no posts</p>
+        {% endfor %}    
+
+        </div>
+    </div>
+
+{% endblock %}
